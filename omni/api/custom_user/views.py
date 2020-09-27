@@ -58,6 +58,7 @@ def customer_signin(request):
             token = generate_session_tokens()
             user.session_token = token
             user.save()
+            user_dict['session_token'] = token
 
             user = authenticate(username=username, password=password)
             login(request, user) # Heavylifting by Django
@@ -116,7 +117,8 @@ def hotel_signin(request):
             token = generate_session_tokens()
             user.session_token = token
             user.save()
-
+            user_dict['session_token'] = token
+            
             user = authenticate(username=username, password=password)
             login(request, user)
             return JsonResponse({'token': token, 'user': user_dict})
@@ -175,7 +177,8 @@ def delivery_signin(request):
             token = generate_session_tokens()
             user.session_token = token
             user.save()
-
+            user_dict['session_token'] = token
+            
             user = authenticate(username=username, password=password)
             login(request, user)
             return JsonResponse({'token': token, 'user': user_dict})
